@@ -10,5 +10,7 @@
  - <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt="logo-css">
  - <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="logo-javascript">
 
+ <img src="https://github.com/JonathamCarvalho/Projeto---JavaScript/blob/main/assets/para-computador.PNG?raw=true" alt="logo-pc- demonstration">
+ <img src="https://github.com/JonathamCarvalho/Projeto---JavaScript/blob/main/assets/para-mobile.PNG?raw=true" alt="logo-mobile- demonstration">
 
 
