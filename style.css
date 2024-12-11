@@ -99,4 +99,16 @@ section{
     font-size: 20px;
 }
 
+@media screen and (max-width: 555px){
+    
+    body{
+        background-color: #f4f4f4;
+    }
+
+        .logo-dolar{
+            mix-blend-mode: soft-light;
+        }
+}
+    
+
 
