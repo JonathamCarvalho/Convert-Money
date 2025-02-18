@@ -2,21 +2,24 @@
 const converterButton = document.querySelector(".convert-button")
 const currencySelect = document.querySelector(".currency-select")
 
-function convertValues() {
+async function convertValues() {
     const inputCurrencyValue = document.querySelector(".input-currency").value
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert") // Valor em real
     const currencyValueConverted = document.querySelector(".currency-value") //Outras moedas
 
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL").then(response => response.json())
+    const dataTwo = await fetch("https://economia.awesomeapi.com.br/json/last/GBP-BRL").then(responseTwo => responseTwo.json())
+    const dataThree = await fetch("https://economia.awesomeapi.com.br/json/last/ARS-BRL").then(responseThree => responseThree.json())
     console.log(currencySelect.value)
 
-    const dolarToday = 6.047
-    const euroToday = 6.37
-    const libraToday = 7.64
-    const bitcoinToday = 629.000
-    const pesoToday = 0.0059
-  
+    const dolarToday = data.USDBRL.high
+    const euroToday = data.EURBRL.high
+    const libraToday = dataTwo.GBPBRL.high
+    const bitcoinToday = data.BTCBRL.high
+    const pesoToday = dataThree.ARSBRL.high
+
     if (currencySelect.value == "dolar") {
-         //se o select estiver selecionado no valor de euro, entre aqui
+        //se o select estiver selecionado no valor de euro, entre aqui
         currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
@@ -36,7 +39,7 @@ function convertValues() {
         //se o select estiver selecionado no valor de libra, entre aqui
         currencyValueConverted.innerHTML = new Intl.NumberFormat("en-GB", {
             style: "currency",
-            currency: "GBP"  
+            currency: "GBP"
         }).format(inputCurrencyValue / libraToday)
     }
 
@@ -49,7 +52,7 @@ function convertValues() {
 
     if (currencySelect.value == "peso") {
         //se o select estiver selecionado no valor de peso, entre aqui
-        currencyValueConverted.innerHTML = new Intl.NumberFormat("es-CL",{
+        currencyValueConverted.innerHTML = new Intl.NumberFormat("es-CL", {
             style: "currency",
             currency: "CLP"
         }).format(inputCurrencyValue / pesoToday)
@@ -61,42 +64,42 @@ function convertValues() {
     }).format(inputCurrencyValue)
 }
 
-function changeCurrency(){
+function changeCurrency() {
     const currencyName = document.querySelector(".currency-dolar")
     const currencyImage = document.querySelector(".currency-img")
 
-    if(currencySelect.value == "dolar"){ 
+    if (currencySelect.value == "dolar") {
 
-    currencyName.innerHTML = "Dólar americano"
-    currencyImage.src = "./assets/Dólar.png"
-        }
-    
-    if(currencySelect.value == "euro"){ 
+        currencyName.innerHTML = "Dólar americano"
+        currencyImage.src = "./assets/Dólar.png"
+    }
+
+    if (currencySelect.value == "euro") {
 
         currencyName.innerHTML = "Euro"
         currencyImage.src = "./assets/Euro.png"
     }
 
-    if(currencySelect.value == "libra"){
-        
+    if (currencySelect.value == "libra") {
+
         currencyName.innerHTML = "Libra"
         currencyImage.src = "./assets/Libra.png"
     }
 
-    if(currencySelect.value == "bitcoin"){
+    if (currencySelect.value == "bitcoin") {
 
         currencyName.innerHTML = "Bitcoin"
         currencyImage.src = "./assets/Bitcoin.png"
     }
-    
-    if(currencySelect.value == "peso"){
+
+    if (currencySelect.value == "peso") {
 
         currencyName.innerHTML = "Peso"
         currencyImage.src = "./assets/Peso.png"
     }
 }
 
- 
-currencySelect.addEventListener("change",changeCurrency )
+
+currencySelect.addEventListener("change", changeCurrency)
 converterButton.addEventListener("click", convertValues)
 
